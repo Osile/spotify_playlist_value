@@ -3,16 +3,17 @@ var app = {
   secret: 'c68d68c0d407487dac379d0935816b2b',
   redirect_uri: encodeURIComponent('http://osile.github.io/spotify_playlist_value'),
   apibase: 'https://api.spotify.com',
-  params: app.getUrlVars(),
   init: function(){
     this.createHandlers();
-    if (params.code){
+    this.getUrlVars();
+    console.log('THIS',this);
+    if (this.params){
            $.ajax({
               url: "https://accounts.spotify.com/api/token",
               type: "POST",
               data: {
                 grant_type: 'authorization_code',
-                code: params.code,
+                code: this.params.code,
                 redirect_uri: this.redirect_uri,
                 client_id: this.client_id,
                 client_secret: this.secret
@@ -60,22 +61,23 @@ var app = {
   },
   getUrlVars:function(){
     {
-        var vars = [], hash;
+        var vars = {}, hash;
         var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
         for(var i = 0; i < hashes.length; i++)
         {
             hash = hashes[i].split('=');
-            vars.push(hash[0]);
+            console.log(hash);
             vars[hash[0]] = hash[1];
         }
-        return vars;
+        this.params = vars;
     }
   },
   createHandlers:function(){
+    self=this;
     $('#btnAuth').click(function(el){
            var url = 'https://accounts.spotify.com/authorize/';
            var response_type = 'code';
-           window.location.href = url + '?client_id=' + this.client_id + '&response_type=' + response_type + '&redirect_uri=' + this.redirect_uri;
+           window.location.href = url + '?client_id=' + self.client_id + '&response_type=' + response_type + '&redirect_uri=' + self.redirect_uri;
     });
   }
 };
