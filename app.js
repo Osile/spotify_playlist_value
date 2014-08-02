@@ -3,7 +3,7 @@ var app = {
   secret: 'c68d68c0d407487dac379d0935816b2b',
   redirect_uri: encodeURIComponent('http://osile.github.io/spotify_playlist_value'),
   apibase: 'https://api.spotify.com',
-  params: this.getUrlVars(),
+  params: app.getUrlVars(),
   init: function(){
     this.createHandlers();
     if (params.code){
@@ -44,19 +44,19 @@ var app = {
    });
   },
   getUserId:function(cb){
-  $.ajax({
-     url: this.apibase + '/v1/me',
-     type: "GET",
-     data: {
-       Authorization: this.auth_token
-     },
-     async: false,
-     success:function(res){
-       console.log(res);
-       this.userid = res.id;
-       cb();
-     }
-  });
+    $.ajax({
+       url: this.apibase + '/v1/me',
+       type: "GET",
+       data: {
+         Authorization: this.auth_token
+       },
+       async: false,
+       success:function(res){
+         console.log(res);
+         this.userid = res.id;
+         cb();
+       }
+    });
   },
   getUrlVars:function(){
     {
