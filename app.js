@@ -3,7 +3,7 @@ var app = {
   secret: 'c68d68c0d407487dac379d0935816b2b',
   redirect_uri: encodeURIComponent('http://osile.github.io/spotify_playlist_value'),
   apibase: 'https://api.spotify.com',
-  params: getUrlVars(),
+  params: this.getUrlVars(),
   init: function(){
     this.createHandlers();
     if (params.code){
