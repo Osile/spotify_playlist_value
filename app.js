@@ -9,13 +9,7 @@ $('#btnAuth').click(function(el){
             },
             async: false,
             success:function(msg){
-                var res = mycmdb.parsemsg(msg);
-                console.log(msg);
-                if (res[0]){
-                    cb(true,res[1]);
-                }else{
-                    cb(false,res[1]);
-                }
+
             }
         });
 });
