@@ -69,7 +69,10 @@ var app = {
             console.log(hash);
             vars[hash[0]] = hash[1];
         }
-        this.params = vars;
+        if(window.location.href.indexOf('?') >= 0){
+          this.params = vars;
+        }
+
     }
   },
   createHandlers:function(){
