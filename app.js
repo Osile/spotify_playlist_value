@@ -6,24 +6,25 @@ var app = {
   init: function(){
     this.createHandlers();
     this.getUrlVars();
-    console.log('THIS',this);
-    if (this.params){
-           $.ajax({
-              url: "https://accounts.spotify.com/api/token",
-              type: "POST",
-              data: {
-                grant_type: 'authorization_code',
-                code: this.params.code,
-                redirect_uri: this.redirect_uri,
-                client_id: this.client_id,
-                client_secret: this.secret
-              },
-              async: false,
-              success:function(res){
-                console.log(res.expires_in);
-                this.getUserId(this.getPlaylists);
-              }
-          });
+    console.log('PARAMS',this.params);
+    if (this.params.auth == 'authed'){
+    	$('#btnAuth').hide();
+		$.ajax({
+		  url: "https://accounts.spotify.com/api/token",
+		  type: "POST",
+		  data: {
+		    grant_type: 'authorization_code',
+		    code: this.params.code,
+		    redirect_uri: this.redirect_uri,
+		    client_id: this.client_id,
+		    client_secret: this.secret
+		  },
+		  async: false,
+		  success:function(res){
+		    console.log('Expiresin:',res.expires_in);
+		    this.getUserId(this.getPlaylists);
+		  }
+		});
     }
   },
   getPlaylists:function(){
