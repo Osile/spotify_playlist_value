@@ -1,4 +1,4 @@
 spotify_playlist_value
 ======================
 
-Find out whats your playlist would cost on iTunes
+Find out what your playlist would cost on iTunes
