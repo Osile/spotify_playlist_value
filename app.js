@@ -80,7 +80,7 @@ var app = {
     $('#btnAuth').click(function(el){
            var url = 'https://accounts.spotify.com/authorize/';
            var response_type = 'code';
-           window.location.href = url + '?client_id=' + self.client_id + '&response_type=' + response_type + '&redirect_uri=' + self.redirect_uri;
+           window.location.href = url + '?client_id=' + self.client_id + '&response_type=' + response_type + '&redirect_uri=' + self.redirect_uri + '&state=authed';
     });
   }
 };
